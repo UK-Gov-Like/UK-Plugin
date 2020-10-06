@@ -37,9 +37,9 @@ public class ExcelAPI {
        if(!hasSheet(name)) {return;}
         workbook.removeSheetAt(workbook.getSheetIndex(name));
     }
-    public Sheet getSheet(String name) {
+    public XSSFSheet getSheet(String name) {
        if(!hasSheet(name)) {return null;}
-       return (jxl.Sheet) workbook.getSheet(name);
+       return (XSSFSheet) workbook.getSheet(name);
     }
     public Cell getCell(Sheet sheet, int x, int y) {
         Map<Integer, List<String>> data = new HashMap<>();
