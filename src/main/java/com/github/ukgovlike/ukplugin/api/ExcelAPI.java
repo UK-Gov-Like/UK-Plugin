@@ -22,7 +22,8 @@ public class ExcelAPI {
      try {
        fileInputStream = new FileInputStream(ExcelFileAPI.file);
      } catch (FileNotFoundException e) {
-       try {ExcelFileAPI.createFile();
+       try {
+         ExcelFileAPI.createFile();
        } catch (IOException ioException) {
          ioException.printStackTrace();
        }
