@@ -14,16 +14,16 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Set up JDK 14
+      - name: Set up JDK 1.8
         uses: actions/setup-java@v1
         with:
-          java-version: 14
+          java-version: 1.8
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Build with Gradle
         run: ./gradlew build
       - name: Rename artifacts
-        run: mv build/libs/UKPlugin-*.jar build/libs/UKPlugin.jar
+        run: mv build/libs/UK-Plugin-*.jar build/libs/UKPlugin.jar
       - name: Archive artifacts
         uses: actions/upload-artifact@v2
         if: success()
