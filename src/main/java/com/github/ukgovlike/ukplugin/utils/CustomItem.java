@@ -1,4 +1,4 @@
-package com.github.ukgovlike.ukplugin.inventory.utils;
+package com.github.ukgovlike.ukplugin.utils;
 
 import com.github.ukgovlike.ukplugin.UKPlugin;
 import lombok.Getter;
