@@ -31,7 +31,7 @@ public class ExcelAPI {
         return (Sheet) workbook.createSheet(name);
     }
     public boolean hasSheet(String name) {
-        return workbook.getSheet(name) == null;
+        return workbook.getSheet(name) != null;
     }
     public void deleteSheet(String name) {
        if(!hasSheet(name)) {return;}
