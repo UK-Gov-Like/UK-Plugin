@@ -19,6 +19,7 @@ import org.bukkit.inventory.meta.SkullMeta;
  * @author eduardo-mior (eduardo-mior/MambaFactions)
  */
 
+@Deprecated
 public class ItemBuilder {
 
     private ItemStack is;
