@@ -1,0 +1,10 @@
+root = true
+
+[*]
+indent_style = space
+indent_size  = 2
+
+[*.java]
+ij_any_else_on_new_line    = false
+ij_any_catch_on_new_line   = false
+ij_any_finally_on_new_line = false
