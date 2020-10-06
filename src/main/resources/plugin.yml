@@ -1,7 +1,10 @@
-name: UK Plugin
+name: UKPlugin
 version: @version@
 main: com.github.ukgovlike.ukplugin.UKPlugin
 api-version: 1.16
 authors: [LoboMetalurgico, Plugner]
 description: A generic plugin that uses excel as a database.
 website: https://github.com/UK-Gov-Like/
+commands:
+  bank:
+    description: The command to use the bank.
