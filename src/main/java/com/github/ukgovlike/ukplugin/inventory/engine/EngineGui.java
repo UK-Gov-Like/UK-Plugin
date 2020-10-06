@@ -10,6 +10,13 @@ import org.bukkit.inventory.Inventory;
 public class EngineGui {
     public  Inventory MAIN_GUI;
     public  Inventory DEPOSIT_GUI;
+    public  Inventory WITHDRAW_GUI;
+    /**
+     * @author Plugner
+     * @see com.github.ukgovlike.ukplugin.events.InventoryClick
+     * @since 05/10/2020
+     * @param p = the player to hook the MainInventory
+     */
     public void hook(Player p) {
         Inventory inventory  = Bukkit.createInventory(null, 3*9, ""+ChatColor.COLOR_CHAR+"6UK Bank");
 
@@ -20,6 +27,12 @@ public class EngineGui {
         MAIN_GUI = inventory;
         p.openInventory(inventory);
     }
+    /**
+     * @author Plugner
+     * @see com.github.ukgovlike.ukplugin.events.InventoryClick
+     * @since 05/10/2020
+     * @param p = the player to hook the DepositInventory
+     */
     public void hookDeposit(Player p) {
         Inventory inventory  = Bukkit.createInventory(null, 3*9, ""+ChatColor.COLOR_CHAR+"6UK Bank");
         inventory.setItem(10, new ItemBuilder(Material.GOLD_BLOCK).setName(""+ChatColor.COLOR_CHAR+"6Deposit all of my purse").toItemStack());
@@ -28,4 +41,19 @@ public class EngineGui {
         DEPOSIT_GUI = inventory;
         p.openInventory(inventory);
     }
+    /**
+     * @author Plugner
+     * @see com.github.ukgovlike.ukplugin.events.InventoryClick
+     * @since 06/10/2020
+     * @param p = the player to hook the WithdrawInventory
+     */
+    public void hookWithdraw(Player p) {
+        Inventory inventory  = Bukkit.createInventory(null, 3*9, ""+ChatColor.COLOR_CHAR+"6UK Bank");
+        inventory.setItem(10, new ItemBuilder(Material.GOLD_BLOCK).setName(""+ChatColor.COLOR_CHAR+"eWithdraw all of my money").toItemStack());
+        inventory.setItem(13, new ItemBuilder(Material.GOLD_INGOT).setName(""+ChatColor.COLOR_CHAR+"eWithdraw half of my money").toItemStack());
+        inventory.setItem(16, new ItemBuilder(Material.PAPER).setName(""+ChatColor.COLOR_CHAR+"eWithdraw specific amount of my money").toItemStack());
+        WITHDRAW_GUI = inventory;
+        p.openInventory(inventory);
+    }
+
 }
