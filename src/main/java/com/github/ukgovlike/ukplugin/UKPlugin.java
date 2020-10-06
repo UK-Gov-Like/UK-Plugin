@@ -6,6 +6,11 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class UKPlugin extends JavaPlugin {
 
+    /**
+     * @authors Plugner, LoboMetalurgico
+     * @since 05/10/2020
+     */
+
     @Override
     public void onEnable() {
      this.getCommand("bank").setExecutor(new Bank());
