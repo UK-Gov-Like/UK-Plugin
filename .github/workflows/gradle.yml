@@ -23,7 +23,7 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
       - name: Rename artifacts
-        run: mv build/libs/UKPlugin-*.jar build/libs/UKPlugin.jar
+        run: mv build/libs/UK-Plugin-*.jar build/libs/UKPlugin.jar
       - name: Archive artifacts
         uses: actions/upload-artifact@v2
         if: success()
