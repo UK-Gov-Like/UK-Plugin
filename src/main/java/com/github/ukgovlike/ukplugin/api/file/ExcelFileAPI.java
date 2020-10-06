@@ -9,28 +9,25 @@ import java.io.IOException;
  * @since 06/10/2020
  */
 public class ExcelFileAPI {
-    public static final String FILE_NAME = "superdatabase";
-    public static final String EXTENSION = ".xlsx";
-    public static final File file = new File(FILE_NAME + EXTENSION);
+  public static final String FILE_NAME = "superdatabase";
+  public static final String EXTENSION = ".xlsx";
+  public static final File file = new File(FILE_NAME + EXTENSION);
 
-    /**
-     * @author Plugner
-     * @since 06/10/2020
-     * @return If file exists
-     */
+  /**
+   * @author Plugner
+   * @since 06/10/2020
+   * @return If file exists
+   */
 
-    public static boolean existsFile() {
-        return file.exists();
-    }
+  public static boolean existsFile() { return file.exists(); }
 
-    /**
-     * @author Plugner
-     * @since 06/10/2020
-     * @return Result of file creation
-     */
+  /**
+   * @author Plugner
+   * @since 06/10/2020
+   * @return Result of file creation
+   */
 
-    public static boolean createFile()
-            throws IOException {
-        return file.createNewFile();
-    }
+  public static boolean createFile() throws IOException {
+    return file.createNewFile();
+  }
 }
