@@ -21,4 +21,8 @@ public final class UKPlugin extends JavaPlugin {
     public void onDisable() {
 
     }
+
+    public static UKPlugin getInstance() {
+        return getPlugin(UKPlugin.class);
+    }
 }
