@@ -21,6 +21,7 @@ import org.bukkit.inventory.meta.SkullMeta;
 
 public class ItemBuilder {
 
+    private ItemStack test;
     private ItemStack is;
 
     public ItemBuilder(Material m) {
