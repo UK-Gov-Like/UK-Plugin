@@ -1,5 +1,7 @@
 # User-specific stuff
 .idea/
+Server/
+start.bat
 
 *.iml
 *.ipr
