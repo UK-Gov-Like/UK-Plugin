@@ -1,5 +1,6 @@
 package com.github.ukgovlike.ukplugin.inventory;
 
+import com.github.ukgovlike.ukplugin.api.Bank;
 import com.github.ukgovlike.ukplugin.api.User;
 import com.wizardlybump17.wlib.inventory.item.ItemButton;
 import com.wizardlybump17.wlib.inventory.paginated.PaginatedInventoryBuilder;
@@ -22,19 +23,28 @@ public class WithdrawInventory extends UKInventory {
             .displayName("§eWithdraw specific amount of my money")
             .build();
 
-    public WithdrawInventory(User user) {
-        super(user);
+    public WithdrawInventory(Bank bank, User user) {
+        super(bank, user);
     }
 
     @Override
     public PaginatedInventoryBuilder getBuilder() {
+        double deposited = bank.getDeposited(user.getId());
         return new PaginatedInventoryBuilder()
                 .shape("         " +
                         " 0  1  2 " +
                         "         "
                 )
-                .shapeReplacement('0', new ItemButton(WITHDRAW_ALL))
-                .shapeReplacement('1', new ItemButton(WITHDRAW_HALF))
+                .shapeReplacement('0', new ItemButton(WITHDRAW_ALL, event -> {
+                    bank.withdraw(user.getId(), deposited);
+                    user.addBalance(deposited);
+                    event.getWhoClicked().closeInventory();
+                }))
+                .shapeReplacement('1', new ItemButton(WITHDRAW_HALF, event -> {
+                    bank.withdraw(user.getId(), deposited / 2);
+                    user.addBalance(deposited / 2);
+                    event.getWhoClicked().closeInventory();
+                }))
                 .shapeReplacement('2', new ItemButton(WITHDRAW_SPECIFIC));
     }
 }
