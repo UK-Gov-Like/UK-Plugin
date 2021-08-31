@@ -1,6 +1,5 @@
 package com.github.ukgovlike.ukplugin.inventory;
 
-import com.github.ukgovlike.ukplugin.api.Bank;
 import com.github.ukgovlike.ukplugin.api.User;
 import com.wizardlybump17.wlib.adapter.WMaterial;
 import com.wizardlybump17.wlib.inventory.item.ItemButton;
@@ -10,18 +9,18 @@ import org.bukkit.Material;
 
 public class MainInventory extends UKInventory {
 
-    public MainInventory(Bank bank, User user) {
-        super(bank, user);
+    public MainInventory(User user) {
+        super(user);
     }
 
     @Override
     public PaginatedInventoryBuilder getBuilder() {
         return new PaginatedInventoryBuilder()
-                .shape("         " +
-                        "    @    " +
-                        "         " +
-                        " -  +  ? " +
-                        "         ")
+                .shape("#########" +
+                        "#   @   #" +
+                        "#       #" +
+                        "#-  +  ?#" +
+                        "#########")
                 .shapeReplacement('@', new ItemButton(
                         Item.builder()
                                 .type(Material.PAPER)
@@ -34,14 +33,14 @@ public class MainInventory extends UKInventory {
                                 .type(Material.GOLD_INGOT)
                                 .displayName("§eWithdraw your coins")
                                 .build(),
-                        event -> new WithdrawInventory(bank, user).show(event.getWhoClicked())
+                        event -> new WithdrawInventory(user).show(event.getWhoClicked())
                 ))
                 .shapeReplacement('+', new ItemButton(
                         Item.builder()
                                 .type(Material.EMERALD)
                                 .displayName("§aDeposit your coins")
                                 .build(),
-                        event -> new DepositInventory(bank, user).show(event.getWhoClicked())
+                        event -> new DepositInventory(user).show(event.getWhoClicked())
                 ))
                 .shapeReplacement('?', new ItemButton(
                         Item.builder()

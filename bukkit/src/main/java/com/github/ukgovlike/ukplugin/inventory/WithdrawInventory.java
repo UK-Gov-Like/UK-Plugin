@@ -1,6 +1,5 @@
 package com.github.ukgovlike.ukplugin.inventory;
 
-import com.github.ukgovlike.ukplugin.api.Bank;
 import com.github.ukgovlike.ukplugin.api.User;
 import com.wizardlybump17.wlib.inventory.item.ItemButton;
 import com.wizardlybump17.wlib.inventory.paginated.PaginatedInventoryBuilder;
@@ -23,28 +22,31 @@ public class WithdrawInventory extends UKInventory {
             .displayName("§eWithdraw specific amount of my money")
             .build();
 
-    public WithdrawInventory(Bank bank, User user) {
-        super(bank, user);
+    public WithdrawInventory(User user) {
+        super(user);
     }
 
     @Override
     public PaginatedInventoryBuilder getBuilder() {
-        double deposited = bank.getDeposited(user.getId());
+        double deposited = user.getDeposited();
         return new PaginatedInventoryBuilder()
-                .shape("         " +
-                        " 0  1  2 " +
-                        "         "
+                .shape("#########" +
+                        "#   @   #" +
+                        "#       #" +
+                        "#^  /  ?#" +
+                        "####_####"
                 )
-                .shapeReplacement('0', new ItemButton(WITHDRAW_ALL, event -> {
-                    bank.withdraw(user.getId(), deposited);
+                .shapeReplacement('^', new ItemButton(WITHDRAW_ALL, event -> {
+                    user.removeDeposited(deposited);
                     user.addBalance(deposited);
-                    event.getWhoClicked().closeInventory();
+                    new MainInventory(user).show(event.getWhoClicked());
                 }))
-                .shapeReplacement('1', new ItemButton(WITHDRAW_HALF, event -> {
-                    bank.withdraw(user.getId(), deposited / 2);
+                .shapeReplacement('/', new ItemButton(WITHDRAW_HALF, event -> {
+                    user.removeDeposited(deposited / 2);
                     user.addBalance(deposited / 2);
                     event.getWhoClicked().closeInventory();
+                    new MainInventory(user).show(event.getWhoClicked());
                 }))
-                .shapeReplacement('2', new ItemButton(WITHDRAW_SPECIFIC));
+                .shapeReplacement('?', new ItemButton(WITHDRAW_SPECIFIC));
     }
 }

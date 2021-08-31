@@ -18,5 +18,10 @@ public interface User extends DatabaseStorable {
         return getBalance() >= balance;
     }
 
+    double getDeposited();
+    void setDeposited(double deposited);
+    void addDeposited(double deposited);
+    void removeDeposited(double deposited);
+
     Set<Transaction> getTransactions();
 }

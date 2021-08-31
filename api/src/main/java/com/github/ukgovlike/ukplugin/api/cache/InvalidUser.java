@@ -40,6 +40,23 @@ public class InvalidUser implements User {
     }
 
     @Override
+    public double getDeposited() {
+        return 0;
+    }
+
+    @Override
+    public void setDeposited(double deposited) {
+    }
+
+    @Override
+    public void addDeposited(double deposited) {
+    }
+
+    @Override
+    public void removeDeposited(double deposited) {
+    }
+
+    @Override
     public Set<Transaction> getTransactions() {
         return new HashSet<>();
     }

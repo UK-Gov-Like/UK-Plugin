@@ -1,6 +1,5 @@
 package com.github.ukgovlike.ukplugin.inventory;
 
-import com.github.ukgovlike.ukplugin.api.Bank;
 import com.github.ukgovlike.ukplugin.api.User;
 import com.wizardlybump17.wlib.inventory.item.ItemButton;
 import com.wizardlybump17.wlib.inventory.paginated.PaginatedInventoryBuilder;
@@ -23,28 +22,32 @@ public class DepositInventory extends UKInventory {
             .displayName("§aDeposit specific amount of my money")
             .build();
 
-    public DepositInventory(Bank bank, User user) {
-        super(bank, user);
+    public DepositInventory(User user) {
+        super(user);
     }
 
     @Override
     public PaginatedInventoryBuilder getBuilder() {
         double balance = user.getBalance();
         return new PaginatedInventoryBuilder()
-                .shape("         " +
-                        " 0  1  2 " +
-                        "         "
+                .shape("#########" +
+                        "#   @   #" +
+                        "#       #" +
+                        "#^  /  ?#" +
+                        "####_####"
                 )
-                .shapeReplacement('0', new ItemButton(DEPOSIT_ALL, event -> {
-                    bank.deposit(user.getId(), balance);
+                .shapeReplacement('^', new ItemButton(DEPOSIT_ALL, event -> {
+                    user.addDeposited(balance);
                     user.setBalance(0);
                     event.getWhoClicked().closeInventory();
+                    new MainInventory(user).show(event.getWhoClicked());
                 }))
-                .shapeReplacement('1', new ItemButton(DEPOSIT_HALF, event -> {
-                    bank.deposit(user.getId(), balance / 2);
+                .shapeReplacement('/', new ItemButton(DEPOSIT_HALF, event -> {
+                    user.addDeposited(balance / 2);
                     user.setBalance(balance / 2);
                     event.getWhoClicked().closeInventory();
+                    new MainInventory(user).show(event.getWhoClicked());
                 }))
-                .shapeReplacement('2', new ItemButton(DEPOSIT_SPECIFIC));
+                .shapeReplacement('?', new ItemButton(DEPOSIT_SPECIFIC));
     }
 }

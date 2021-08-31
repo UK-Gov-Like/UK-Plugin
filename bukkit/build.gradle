@@ -12,7 +12,8 @@ dependencies {
             'org.projectlombok:lombok:1.18.20',
             'org.spigotmc:spigot-api:1.17.1-R0.1-SNAPSHOT',
             'com.wizardlybump17.wlib:core:1.2.0', //the build at JitPack is bugged, go to https://github.com/WizardlyBump17/WLib and build it yourself
-            'com.wizardlybump17.wlib:adapter:1.2.0'
+            'com.wizardlybump17.wlib:adapter:1.2.0',
+            'com.wizardlybump17.wlib:utils:1.2.0'
     )
     annotationProcessor('org.projectlombok:lombok:1.18.20')
     implementation(

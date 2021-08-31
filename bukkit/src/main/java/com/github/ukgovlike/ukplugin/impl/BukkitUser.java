@@ -14,6 +14,7 @@ public class BukkitUser implements User {
     private final UUID id;
     private final String name;
     private double balance;
+    private double deposited;
     private final Set<Transaction> transactions = new HashSet<>();
     private boolean dirty, deleted, inDatabase;
 
@@ -25,14 +26,31 @@ public class BukkitUser implements User {
     @Override
     public void addBalance(double balance) {
         this.balance += balance;
-        transactions.add(new Transaction(Transaction.TransactionType.DEPOSIT, balance, System.currentTimeMillis()));
         dirty = true;
     }
 
     @Override
     public void removeBalance(double balance) {
         this.balance = Math.max(this.balance - balance, 0);
-        transactions.add(new Transaction(Transaction.TransactionType.WITHDRAW, balance, System.currentTimeMillis()));
+        dirty = true;
+    }
+
+    @Override
+    public void addDeposited(double deposited) {
+        this.deposited += deposited;
+        transactions.add(new Transaction(Transaction.TransactionType.DEPOSIT, deposited, System.currentTimeMillis()));
+        dirty = true;
+    }
+
+    @Override
+    public void removeDeposited(double deposited) {
+        this.deposited = Math.max(this.deposited - deposited, 0);
+        transactions.add(new Transaction(Transaction.TransactionType.WITHDRAW, deposited, System.currentTimeMillis()));
+        dirty = true;
+    }
+
+    public void setDeposited(double deposited) {
+        this.deposited = deposited;
         dirty = true;
     }
 }
