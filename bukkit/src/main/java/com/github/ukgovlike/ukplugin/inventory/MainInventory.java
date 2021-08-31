@@ -46,8 +46,8 @@ public class MainInventory extends UKInventory {
                         Item.builder()
                                 .type(WMaterial.SIGN)
                                 .displayName("§fRecent changes")
-                                .build()
-                        //transactions inventory
+                                .build(),
+                        event -> new TransactionsInventory(user).show(event.getWhoClicked())
                 ));
     }
 }

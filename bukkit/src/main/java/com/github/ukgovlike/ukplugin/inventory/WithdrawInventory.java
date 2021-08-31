@@ -38,12 +38,10 @@ public class WithdrawInventory extends UKInventory {
                 )
                 .shapeReplacement('^', new ItemButton(WITHDRAW_ALL, event -> {
                     user.removeDeposited(deposited);
-                    user.addBalance(deposited);
                     new MainInventory(user).show(event.getWhoClicked());
                 }))
                 .shapeReplacement('/', new ItemButton(WITHDRAW_HALF, event -> {
                     user.removeDeposited(deposited / 2);
-                    user.addBalance(deposited / 2);
                     event.getWhoClicked().closeInventory();
                     new MainInventory(user).show(event.getWhoClicked());
                 }))

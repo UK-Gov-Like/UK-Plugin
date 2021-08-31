@@ -38,13 +38,11 @@ public class DepositInventory extends UKInventory {
                 )
                 .shapeReplacement('^', new ItemButton(DEPOSIT_ALL, event -> {
                     user.addDeposited(balance);
-                    user.setBalance(0);
                     event.getWhoClicked().closeInventory();
                     new MainInventory(user).show(event.getWhoClicked());
                 }))
                 .shapeReplacement('/', new ItemButton(DEPOSIT_HALF, event -> {
                     user.addDeposited(balance / 2);
-                    user.setBalance(balance / 2);
                     event.getWhoClicked().closeInventory();
                     new MainInventory(user).show(event.getWhoClicked());
                 }))
