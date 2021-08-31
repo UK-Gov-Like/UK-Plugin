@@ -1,0 +1,17 @@
+repositories {
+    maven {
+        url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
+    }
+    maven {
+        url = 'https://oss.sonatype.org/content/groups/public/'
+    }
+}
+
+dependencies {
+    compileOnly(
+            'org.projectlombok:lombok:1.18.20',
+            'org.spigotmc:spigot-api:1.17.1-R0.1-SNAPSHOT',
+            'com.wizardlybump17.wlib:core:1.2.0' //the build at JitPack is bugged, go to https://github.com/WizardlyBump17/WLib and build it yourself
+    )
+    annotationProcessor('org.projectlombok:lombok:1.18.20')
+}

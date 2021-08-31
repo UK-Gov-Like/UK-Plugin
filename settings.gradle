@@ -1,1 +1,4 @@
 rootProject.name = 'UK-Plugin'
+include 'api'
+include 'bukkit'
+
