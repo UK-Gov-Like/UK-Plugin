@@ -1,6 +1,7 @@
 package com.github.ukgovlike.ukplugin.excel;
 
 import com.github.ukgovlike.ukplugin.UKPlugin;
+import com.github.ukgovlike.ukplugin.tests.TestCheck;
 import jxl.Workbook;
 import jxl.WorkbookSettings;
 import jxl.read.biff.BiffException;
@@ -63,6 +64,12 @@ public class ExcelFileCreate {
 
     writableCellFormat.setWrap(true);
 
+    if(TestCheck.isTestMode()) {
+      System.out.println("Running in test mode, will not save!");
+    }else{
+      workbook.write();
+    }
+
     return workbook;
   }
 
@@ -79,6 +86,10 @@ public class ExcelFileCreate {
 
     writableCellFormat.setWrap(true);
 
+    if(TestCheck.isTestMode()) {
+      System.out.println("[ExcelFileCreate] Running in test mode.");
+    }
+
     return workbook;
   }
 
@@ -86,12 +97,11 @@ public class ExcelFileCreate {
     Label label = new Label(col, row, value);
     sheet.addCell(label);
 
-    workbook.write();
-
     col++;
-    if(UKPlugin.config == null) {
+    if(TestCheck.isTestMode()) {
       System.out.println("[ExcelFileCreate] Running in test mode, don't saving in config.");
     }else{
+      workbook.write();
       UKPlugin.config.set("LastCol", col);
       UKPlugin.getInstance().saveConfig();
       UKPlugin.getInstance().reloadConfig();
