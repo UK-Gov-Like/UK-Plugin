@@ -1,13 +1,22 @@
 package com.github.ukgovlike.ukplugin.api;
 
-import java.util.Set;
+import com.github.ukgovlike.ukplugin.api.database.DatabaseStorable;
 
-public interface User {
+import java.util.Set;
+import java.util.UUID;
+
+public interface User extends DatabaseStorable {
+
+    UUID getId();
+    String getName();
 
     double getBalance();
     void setBalance(double balance);
     void addBalance(double balance);
     void removeBalance(double balance);
+    default boolean hasBalance(double balance) {
+        return getBalance() >= balance;
+    }
 
     Set<Transaction> getTransactions();
 }
