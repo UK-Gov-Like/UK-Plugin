@@ -3,9 +3,7 @@ package com.github.ukgovlike.ukplugin.api.cache;
 import com.github.ukgovlike.ukplugin.api.User;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 public class UserCache {
 
@@ -34,5 +32,9 @@ public class UserCache {
 
     public boolean has(UUID id) {
         return cache.containsKey(id);
+    }
+
+    public Collection<User> getUsers() {
+        return new HashSet<>(cache.values());
     }
 }
