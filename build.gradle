@@ -1,12 +1,10 @@
-import org.apache.tools.ant.filters.ReplaceTokens
-
 apply plugin: 'java'
 
 group = 'com.github.uk-gov-like'
 version = '1.0.0-SNAPSHOT'
 
-sourceCompatibility = '1.8'
-targetCompatibility = '1.8'
+sourceCompatibility = '16'
+targetCompatibility = '16'
 
 repositories {
     mavenCentral()
@@ -23,11 +21,5 @@ repositories {
 dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.17.1-R0.1-SNAPSHOT'
     implementation 'net.sourceforge.jexcelapi:jxl:2.6.12'
-    compileOnly 'org.projectlombok:lombok:1.18.12'
-}
-
-processResources {
-    from(sourceSets.main.resources.srcDirs) {
-        filter ReplaceTokens, tokens: [version: version]
-    }
+    compileOnly 'org.projectlombok:lombok:1.18.20'
 }
