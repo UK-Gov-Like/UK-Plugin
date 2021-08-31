@@ -16,6 +16,8 @@ public class TestRunner {
 
   public static void main(String[] args) {
 
+    tests.add(new ExcelFileCreate_Test());
+
     for(Test test : tests) {
       TestLogger.logRunning(test);
       TestResult testResult = test.execute();

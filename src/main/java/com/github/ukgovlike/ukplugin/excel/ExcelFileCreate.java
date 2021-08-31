@@ -31,6 +31,7 @@ public class ExcelFileCreate {
 
   public ExcelFileCreate(String fileName) {
     this.fileName = fileName;
+    this.file = new File(fileName);
   }
 
   public String getFileName() {
@@ -41,7 +42,7 @@ public class ExcelFileCreate {
     this.fileName = fileName;
   }
 
-  private File file = new File(fileName);
+  private final File file;
   private WorkbookSettings settings = new WorkbookSettings();
   private WritableWorkbook workbook;
   private WritableSheet sheet;
@@ -105,6 +106,18 @@ public class ExcelFileCreate {
       UKPlugin.config.set("LastCol", col);
       UKPlugin.getInstance().saveConfig();
       UKPlugin.getInstance().reloadConfig();
+    }
+  }
+
+  public void insertCell(String value, int row, int col) throws WriteException, IOException {
+    Label label = new Label(col, row, value);
+    sheet.addCell(label);
+
+    col++;
+    if(TestCheck.isTestMode()) {
+      System.out.println("[ExcelFileCreate] Running in test mode, don't saving in config.");
+    }else{
+      workbook.write();
     }
   }
 }
