@@ -1,0 +1,7 @@
+name: UKPlugin
+main: com.github.ukgovlike.ukplugin.UKPlugin
+version: '${version}'
+authors: [LoboMetalurgico, Plugner, WizardlyBump17]
+softdepend: [WLib]
+commands:
+  bank:

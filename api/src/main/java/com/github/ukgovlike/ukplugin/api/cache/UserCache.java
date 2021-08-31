@@ -16,6 +16,14 @@ public class UserCache {
         return cache.getOrDefault(id, new InvalidUser());
     }
 
+    @NotNull
+    public User getOrInsert(UUID id, User user) {
+        if (has(id))
+            return get(id);
+        add(user);
+        return user;
+    }
+
     public void add(User user) {
         cache.put(user.getId(), user);
     }
