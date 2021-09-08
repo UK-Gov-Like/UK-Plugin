@@ -1,6 +1,7 @@
 package com.github.ukgovlike.ukplugin.events;
 
 import com.github.ukgovlike.ukplugin.inventory.engine.EngineGui;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -22,17 +23,19 @@ public class InventoryClick implements Listener {
         String displayName = itemMeta.getDisplayName();
         Player player = (Player) e.getWhoClicked();
 
-           if (displayName.contains("Deposit" /*PLEASE CHANGE IN THE FUTURE */)) {
-               EngineGui engineGui = new EngineGui();
-               player.closeInventory();
-               engineGui.hookDeposit(player);
-               e.setCancelled(true);
-           }
-           else if(displayName.contains("Withdraw")/*PLEASE CHANGE IN THE FUTURE */) {
-               EngineGui engineGui = new EngineGui();
-               player.closeInventory();
-               engineGui.hookWithdraw(player);
-               e.setCancelled(true);
-           }
+        if(e.getClickedInventory() == EngineGui.MAIN_GUI) {
+          if (item.getType() == Material.CHEST) {
+            EngineGui engineGui = new EngineGui();
+            player.closeInventory();
+            engineGui.hookDeposit(player);
+            e.setCancelled(true);
+          }
+          else if(item.getType() == Material.FURNACE) {
+            EngineGui engineGui = new EngineGui();
+            player.closeInventory();
+            engineGui.hookWithdraw(player);
+            e.setCancelled(true);
+          }
+        }
     }
 }
